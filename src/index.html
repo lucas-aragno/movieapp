@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html>
+  <header>
+    <title> Movie App </title>
+  </header>
+  <body>
+    <h2> Movie app </h2>
+      <div id="movie-app">
+        <input :value="input" @input="fetchData"></input>
+        <br />
+        <div>
+          {{ movie ? movie.title : 'placeholder' }}
+        </div>
+      </div>
+    <script src="/assets/app.bundle.js"></script>
+  </body>
+</html>
