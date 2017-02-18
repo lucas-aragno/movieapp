@@ -6,6 +6,15 @@
   <body>
     <div id="root">
     </div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/public/sw.js').then(function(registration) {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }).catch(function(err) {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      }
+    </script>
     <script src="/static/bundle.js"></script>
   </body>
 </html>
