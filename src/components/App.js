@@ -1,4 +1,6 @@
 import { h, Component } from 'preact'
+import SearchBar from './SearchBar'
+import SearchesList from './SearchesList'
 
 export default class App extends Component {
   constructor () {
@@ -6,6 +8,7 @@ export default class App extends Component {
     this.state = {
       searches: []
     }
+    this.addSearch = this.addSearch.bind(this)
   }
 
   addSearch ({search, results}) {
@@ -14,12 +17,18 @@ export default class App extends Component {
       searches.push({search, results})
       return {searches: searches}
     })
+    console.table(this.state)
   }
 
-  render () {
+  render (props, state) {
     return (
       <div>
-        Hi
+        <SearchBar
+          addSearch={this.addSearch}
+        />
+        <SearchesList
+          searches={state.searches}
+        />
       </div>
     )
   }
