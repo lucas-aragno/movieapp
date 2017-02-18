@@ -1,5 +1,5 @@
-var webpack = require("webpack");
-var path = require("path");
+var webpack = require('webpack')
+var path = require('path')
 
 module.exports = {
   entry: path.join(__dirname, 'src/index.js'),
@@ -9,16 +9,23 @@ module.exports = {
     publicPath: '/static/'
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel-loader',
-      exclude: '/node_modules/',
-      include: path.join(__dirname, 'src')
-    },
-    {
-      test: /\.css$/,
-      loader: ['style-loader', 'raw-loader'],
-      include: path.join(__dirname, 'src/styles')
-    }]
+    rules: [
+      {
+        test: /\.jsx?/i,
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            'es2015'
+          ],
+          plugins: [
+            ['transform-react-jsx', { pragma: 'h' }]
+          ]
+        }
+      },
+      {
+        test: /.css$/,
+        loader: ['style-loader', 'raw-loader']
+      }
+    ]
   }
 }
