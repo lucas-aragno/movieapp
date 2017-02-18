@@ -7,13 +7,15 @@
     <div id="root">
     </div>
     <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/public/sw.js').then(function(registration) {
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }).catch(function(err) {
-          console.log('ServiceWorker registration failed: ', err);
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js', { scope: '/' })
+        .then(function(registration) {
+              console.log('Service Worker Registered');
         });
-      }
+      navigator.serviceWorker.ready.then(function(registration) {
+         console.log('Service Worker Ready');
+      });
+    }
     </script>
     <script src="/static/bundle.js"></script>
   </body>

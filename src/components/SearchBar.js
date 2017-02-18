@@ -11,8 +11,22 @@ export default class SearchBar extends Component {
   doSearch () {
     const { addSearch } = this.props
     const { text } = this.state
+    const url = `http://api.tvmaze.com/search/shows?q=${text}`
+    if ('caches' in window) {
+      console.warn('TIENE CACHE')
+      caches.match(url).then((res, err) => {
+        if(res) {
+          res.json().then((json) => {
+            addSearch({
+              search: text,
+              results: json
+            })
+          })
+        }
+      })
+    }
     request
-      .get(`http://api.tvmaze.com/search/shows?q=${text}`)
+      .get(url)
       .end((err, res) => {
         if (!err) {
           addSearch({
