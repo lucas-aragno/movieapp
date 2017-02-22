@@ -21,10 +21,6 @@ module.exports = {
             ['transform-react-jsx', { pragma: 'h' }]
           ]
         }
-      },
-      {
-        test: /.css$/,
-        loader: ['style-loader', 'raw-loader']
       }
     ]
   }
