@@ -13,7 +13,6 @@ export default class SearchBar extends Component {
     const { text } = this.state
     const url = `http://api.tvmaze.com/search/shows?q=${text}`
     if ('caches' in window) {
-      console.warn('TIENE CACHE')
       caches.match(url).then((res, err) => {
         if(res) {
           res.json().then((json) => {
